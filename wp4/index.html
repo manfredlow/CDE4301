@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WP4 Sealing: Automated Seal Application</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="../components/table-of-content/table-of-content.css">
+  <script type="module" src="../components/image/image-component.js"></script>
+  <link rel="stylesheet" href="../components/references/references.css">
+  <link rel="stylesheet" href="../components/scroll-to-top/scroll-to-top.css">
+  <script src="../components/scroll-to-top/scroll-to-top.js"></script>
+</head>
+
+<body>
+  <div class="content">
+    <h1>WP4 Sealing: Automated Seal Application</h1>
+
+<p><strong>Author: Manfred Low</strong> | Supervisor: Mr Soh Eng Keng</p>
+<p><strong>Pages:</strong> <a href="../">Project overview</a> | <a href="../wp2/">WP2 Box Formation</a> | WP4 Sealing (this page)</p>
+<div class="table-of-content">
+<h2>Table of Contents</h2>
+<sl-tree>
+<sl-tree-item><a href="#1-scope-and-problem">1. Scope and Problem</a></sl-tree-item>
+<sl-tree-item expanded><a href="#2-context-and-existing-solutions">2. Context and Existing Solutions</a>
+<sl-tree-item><a href="#21-current-process">2.1 Current Process</a></sl-tree-item>
+<sl-tree-item><a href="#22-existing-solutions">2.2 Existing Solutions</a></sl-tree-item>
+<sl-tree-item><a href="#23-ip-and-gap">2.3 IP and Gap</a></sl-tree-item></sl-tree-item>
+<sl-tree-item><a href="#3-design-specifications">3. Design Specifications</a></sl-tree-item>
+<sl-tree-item expanded><a href="#4-concept-development">4. Concept Development</a>
+<sl-tree-item><a href="#41-functions">4.1 Functions</a></sl-tree-item>
+<sl-tree-item><a href="#42-from-functions-to-concepts">4.2 From Functions to Concepts</a></sl-tree-item>
+<sl-tree-item><a href="#43-evaluation-and-selection">4.3 Evaluation and Selection</a></sl-tree-item>
+<sl-tree-item><a href="#44-grid-sheet-seals-concept-stage">4.4 Grid-Sheet Seals (Concept Stage)</a></sl-tree-item></sl-tree-item>
+<sl-tree-item expanded><a href="#5-detail-design">5. Detail Design</a>
+<sl-tree-item><a href="#51-module-layout">5.1 Module Layout</a></sl-tree-item>
+<sl-tree-item><a href="#52-motorised-head-stopping-on-the-gap">5.2 Motorised Head: Stopping on the Gap</a></sl-tree-item></sl-tree-item>
+<sl-tree-item expanded><a href="#6-prototypes">6. Prototypes</a>
+<sl-tree-item><a href="#61-purpose">6.1 Purpose</a></sl-tree-item>
+<sl-tree-item><a href="#62-how-the-rig-design-developed">6.2 How the Rig Design Developed</a></sl-tree-item>
+<sl-tree-item><a href="#63-design-principles">6.3 Design Principles</a></sl-tree-item>
+<sl-tree-item><a href="#64-fabrication">6.4 Fabrication</a></sl-tree-item></sl-tree-item>
+<sl-tree-item expanded><a href="#7-testing-and-analysis">7. Testing and Analysis</a>
+<sl-tree-item><a href="#71-stage-1-tests">7.1 Stage 1 Tests</a></sl-tree-item>
+<sl-tree-item><a href="#72-what-the-tests-show">7.2 What the Tests Show</a></sl-tree-item>
+<sl-tree-item><a href="#73-planned-tests">7.3 Planned Tests</a></sl-tree-item></sl-tree-item>
+<sl-tree-item expanded><a href="#8-problems-shortcomings-and-plan">8. Problems, Shortcomings and Plan</a>
+<sl-tree-item><a href="#81-problems-and-how-they-are-being-resolved">8.1 Problems and How They Are Being Resolved</a></sl-tree-item>
+<sl-tree-item><a href="#82-plan-and-milestones">8.2 Plan and Milestones</a></sl-tree-item></sl-tree-item>
+<sl-tree-item><a href="#9-summary">9. Summary</a></sl-tree-item>
+<sl-tree-item><a href="#references">References</a></sl-tree-item>
+<sl-tree-item><a href="#appendices">Appendices</a>
+<sl-tree-item><a href="#appendix-a-full-wp4-acceptance-test-list">Appendix A: Full WP4 Acceptance Test List</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-b-morphological-chart-concepts-and-scoring">Appendix B: Morphological Chart, Concepts and Scoring</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-c-declaration-of-ai-tool-use">Appendix C: Declaration of AI Tool Use</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-d-label-application-methods">Appendix D: Label Application Methods</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-e-wp4-risk-register">Appendix E: WP4 Risk Register</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-f-calculations">Appendix F: Calculations</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-g-grid-sheet-methods-considered">Appendix G: Grid-Sheet Methods Considered</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-h-wp4-changeover-axes">Appendix H: WP4 Changeover Axes</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-i-stage-1-rig-design-decisions">Appendix I: Stage 1 Rig Design Decisions</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-j-planned-test-protocol-for-t1-t2-and-the-peel-edge-check">Appendix J: Planned Test Protocol for T1, T2 and the Peel Edge Check</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-k-commercial-seal-applicators-compared">Appendix K: Commercial Seal Applicators Compared</a></sl-tree-item>
+<sl-tree-item><a href="#appendix-l-design-journey">Appendix L: Design Journey</a></sl-tree-item></sl-tree-item>
+</sl-tree>
+</div>
+<sl-divider></sl-divider>
+<h2 id="1-scope-and-problem">1. Scope and Problem</h2>
+<p>Each kit box travels lying flat and needs one or two tamper-evident seals: 30 mm circles folded 90° over the edge of the lid or base onto the front or back wall, so opening the box tears them [<a href="#ref-1">1</a>]. This report refers to them as right-angle edge seals (Figure 1.1). CEVA calls manual sealing a bottleneck and quality risk [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>]. Kitting staff close the lid [<a href="#ref-3">3</a>], so WP4 covers sealing only.</p>
+<p>The objectives are to select a concept that seals all 16 sizes without manual changeover, prove its critical function with a Stage 1 prototype, and find a way to use grid sheets (design timeline: Appendix L).</p>
+<image-component tag="figure-1-1" source="../assets/wp4-seal-positions.png" subtitle="Figure 1.1. Right-angle edge seals on a box lying flat. Left: both seals fold onto the front wall. Right: the second seal folds onto the back wall (dashed: hidden from this view)."></image-component>
+<h2 id="2-context-and-existing-solutions">2. Context and Existing Solutions</h2>
+<h3 id="21-current-process">2.1 Current Process</h3>
+<p>Three CEVA operators do the sealing: two apply seals and one checks them. For roll seals, they push each box into a semi-automatic labeller similar to the Zonesun ZS-TB90 [4] and turn it by hand to seal the other side. The labeller only takes rolls, so grid-sheet seals are applied entirely by hand (Figure 2.1).</p>
+<image-component tag="figure-2-1" source="../assets/wp4-seal-stock.png" subtitle="Figure 2.1. The two seal stock formats CEVA uses: (a) a roll, where a continuous backing can be pulled past a peel edge; (b) a grid sheet, where it cannot."></image-component>
+<h3 id="22-existing-solutions">2.2 Existing Solutions</h3>
+<p>I analysed four commercial machines (Figure 2.2, Table K1).</p>
+<image-component tag="figure-2-2" source="../assets/wp4-existing-machines.jpg" subtitle="Figure 2.2. The four machines analysed. Images from the manufacturers&#x27; websites [4]-[7]."></image-component>
+<p>The machines that fold the seal are complete units with their own conveyor, and the conveyor-mounted applicator cannot fold. None changes size without manual setup, and all are roll-fed, peeling the seal off its backing at a sharp edge. CEVA requires changeover from a recipe (UAT-11), so WP4 must add changeover, conveyor fit and grid stock, not a new way of peeling [1].</p>
+<h3 id="23-ip-and-gap">2.3 IP and Gap</h3>
+<p>I searched Google Patents and the makers’ websites for existing patents and products. The closest patent I could read, US 5,988,251 [8], puts separate labels on two faces of a box and has expired. This was a quick search, not a full patent clearance. The gap rests on the machines I reviewed: none seals right-angle edges on an existing conveyor, changes size from a recipe and takes both stock formats.</p>
+<sl-divider></sl-divider>
+<h2 id="3-design-specifications">3. Design Specifications</h2>
+<p>Shared targets are on the <a href="../#3-shared-requirements">project overview</a>; the full list is in Appendix A.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ref</th>
+<th>Target</th>
+<th>Design implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UAT-02</td>
+<td>Seal in 1 to 2 s per box</td>
+<td>Favours sealing on the move</td>
+</tr>
+<tr>
+<td>UAT-03</td>
+<td>Inlet to outlet under 7 s</td>
+<td>Time to turn the box between seals</td>
+</tr>
+<tr>
+<td>UAT-04</td>
+<td>&gt;= 99.8 % success, shared with WP2</td>
+<td>About 99.9 % per station</td>
+</tr>
+<tr>
+<td>UAT-14</td>
+<td>1 or 2 seals per recipe</td>
+<td>Seal count and side are recipe fields</td>
+</tr>
+<tr>
+<td>UAT-15</td>
+<td>100 % seal check</td>
+<td>Camera checks every seal</td>
+</tr>
+</tbody>
+</table></div>
+<p class="caption">Table 3.1. WP4 specifications and what each one constrains.</em></p>
+<p>Each head applies one seal per box, so each head's roll lasts about 3 to 4 h (Appendix F) and an 8-hour run needs a splice or roll change.</p>
+<sl-divider></sl-divider>
+<h2 id="4-concept-development">4. Concept Development</h2>
+<h3 id="41-functions">4.1 Functions</h3>
+<p>I split sealing into six functions per box (the second seal only where needed), plus changeover once per SKU (Figure 4.1), and listed options for each (Table B1, Figure 4.2) from Section 2.2, label application methods (Appendix D) and my ideas (Appendix B).</p>
+<image-component tag="figure-4-1" source="../assets/wp4-functions.png" subtitle="Figure 4.1. The six sealing functions per box (the second seal only where needed) and changeover once per SKU."></image-component>
+<image-component tag="figure-4-2" source="../assets/wp4-morph-chart.png" subtitle="Figure 4.2. Morphological chart: each row is a function and each sketch one way to do it. Crossed-out options failed the screening in Section 4.2."></image-component>
+<h3 id="42-from-functions-to-concepts">4.2 From Functions to Concepts</h3>
+<p>Before scoring, I removed options that failed any of three hard requirements (Table 4.1).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Options eliminated</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seal in 1 to 2 s (UAT-02)</td>
+<td>Stop-and-pick with one head</td>
+<td>One vacuum pick head needs 1.7 to 2.2 s for two seals (Appendix F), plus the box stop and restart</td>
+</tr>
+<tr>
+<td>Fold the seal 90° over the edge</td>
+<td>Tamp pad and tamp-blow</td>
+<td>A tamp presses one face only, so the folded half needs a second step with the box stopped; wipe-on lays and folds the seal in one pass</td>
+</tr>
+<tr>
+<td>No manual changeover (RCA scope; UAT-11 recipe selection)</td>
+<td>Manual adjustment; roll cage</td>
+<td>Both must be reset by hand for each box size; a roll cage fits only one size</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table 4.1. Screening of the morphological chart options against hard requirements.</em></p>
+<p>The remaining options combine into four concepts (Table B2, Figure 4.3).</p>
+<div class="table-wrap"><table class="fig-grid">
+<thead>
+<tr>
+<th>(a) A: Roll-fed wipe-on</th>
+<th>(b) B: Vacuum pick from grid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Concept A" src="../assets/wp4-concept-a.gif" /></td>
+<td><img alt="Concept B" src="../assets/wp4-concept-b.gif" /></td>
+</tr>
+<tr>
+<td><strong>(c) C: Stamp from below</strong></td>
+<td><strong>(d) D: Box on its side</strong></td>
+</tr>
+<tr>
+<td><img alt="Concept C" src="../assets/wp4-concept-c.gif" /></td>
+<td><img alt="Concept D" src="../assets/wp4-concept-d.gif" /></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Figure 4.3. 3D concept animations of Concepts A to D, generated with Claude from my descriptions (Appendix C).</em></p>
+<h3 id="43-evaluation-and-selection">4.3 Evaluation and Selection</h3>
+<p>Concept A appeared strongest because it seals on the move, so the matrix (Figure 4.4) tested that view. Weightages come from RCA targets and project constraints (Table B3).</p>
+<image-component tag="figure-4-4" source="../assets/wp4-decision-matrix.png" subtitle="Figure 4.4. Decision matrix: scores from 1 (poor) to 5 (excellent), multiplied by each weightage (Table B3). Table B5 gives the reason for every score."></image-component>
+<p>Concept A was selected because it uses the proven peel edge and never stops the box. It still wins with equal weightages (Table B4). CEVA's later request to use the existing conveyor also rules out C and D, which need special conveyors (Table B2), whereas A only pushes the box 25 mm past the edge of CEVA's belt. A's weak point, grid stock, led to a converter (Section 4.4). Its peel head was inspired by a correction-tape dispenser.</p>
+<h3 id="44-grid-sheet-seals-concept-stage">4.4 Grid-Sheet Seals (Concept Stage)</h3>
+<p>A grid sheet has no continuous backing to pull, and vacuum picking is slow. I propose a separate converter that slits sheets into strips, splices them and rewinds them onto a roll, so grid stock runs on the Concept A head (Figure 4.5). I will build it in Semester 2, starting with a test of whether the splices pass cleanly over the peel edge (other methods: Appendix G).</p>
+<image-component tag="figure-4-5" source="../assets/wp4-grid-converter.png" subtitle="Figure 4.5. Grid-to-roll converter concept, left to right: slit the sheet into strips, rotate each strip 90°, splice the strips end to end and rewind onto a roll (generated with Claude, Anthropic)."></image-component>
+<sl-divider></sl-divider>
+<h2 id="5-detail-design">5. Detail Design</h2>
+<h3 id="51-module-layout">5.1 Module Layout</h3>
+<p>The module bolts beside the existing conveyor, like a HERMA 500 (Figure 5.1). A recipe-driven side guide pushes each box 25 mm past the belt edge, and a laser and encoder time each seal. Upper and lower heads lay half a seal on the lid and base, and a fold roller turns the overhang onto the front wall as the box moves. A camera checks both seals; a pusher rejects failures. Room for the lower head at CEVA's belt edge needs checking on site.</p>
+<image-component tag="figure-5-1" source="../assets/wp4-module-layout.png" subtitle="Figure 5.1. WP4 module beside the existing conveyor, viewed from above (turntable not shown). Changeover axes are in Appendix H."></image-component>
+<p>For seals on opposite walls, the box must turn 180° between heads. I chose a servo turntable over a twin-belt turner (Figure 5.2) because it lands at exactly 180° for every box width, whereas the belts rely on friction. Its stop is still to be timed against the 4 s cycle and 7 s limit.</p>
+<div class="table-wrap"><table class="fig-grid">
+<thead>
+<tr>
+<th>(a) Twin-belt turner</th>
+<th>(b) Servo turntable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Twin-belt turner" src="../assets/wp4-turner-belt.gif" /></td>
+<td><img alt="Servo turntable" src="../assets/wp4-turner-table.gif" /></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Figure 5.2. Two ways of turning the box 180° between the top and bottom heads (animations generated with Claude, Anthropic): (a) the near belt runs faster, so the box spins while moving; (b) a disc lifts the box, turns it and sets it down.</em></p>
+<h3 id="52-motorised-head-stopping-on-the-gap">5.2 Motorised Head: Stopping on the Gap</h3>
+<p>A stepper motor will replace the Stage 1 hand crank (Section 6). A sensor detects the 3 mm gap between seals, and the stepper then moves a fixed distance and stops. Only the variation in that stopping distance uses up the ±1.5 mm window. At 100 mm/s the web moves 0.1 mm for every millisecond of sensor delay, so a delay variation under 5 ms keeps the error within 0.5 mm (Appendix F).</p>
+<sl-divider></sl-divider>
+<h2 id="6-prototypes">6. Prototypes</h2>
+<h3 id="61-purpose">6.1 Purpose</h3>
+<p>Before designing the motorised module, I needed to know whether CEVA's seals release at a 3D-printed edge and can be wiped over a box edge by a roller. The hand-crank rig tests this critical function (Figure 6.1).</p>
+<image-component tag="figure-6-1" source="../assets/wp4-stage1-rig.jpg" subtitle="Figure 6.1. Stage 1 hand-crank rig: (a) CAD model, (b) built rig, (c) seal leaving the peel edge."></image-component>
+<h3 id="62-how-the-rig-design-developed">6.2 How the Rig Design Developed</h3>
+<p>The rig was sized from a measured CEVA roll (170 mm outer diameter on an 80 mm core, carrying 30 mm seals at a 33 mm pitch) and the box CEVA asked us to focus on first (144 x 100 x 41 mm). Two decisions shaped it (other rig decisions in Appendix I).</p>
+<p>First, the crank drives the rewind spool directly, avoiding a drive roller, pinch roller and slipping belt. Second, one crank turn should feed exactly one seal, so that each turn is one trial. A direct drive would need a 5.25 mm core radius (33 mm / 2π), too thin to print, so I used a 15.75 mm core (2π x 15.75 = 99 mm, three pitches, per spool turn) and a 17:51 gear pair, so one crank turn gives one third of a spool turn: 33 mm, one seal.</p>
+<h3 id="63-design-principles">6.3 Design Principles</h3>
+<p>The crank pulls the backing sharply round a 30° peel bar. The stiffer seal cannot follow the bend and continues forward, landing with half on the box and half past the edge, ready to fold 90° (Figure 6.2). A spring-loaded wipe roller then presses the seal flat over the box edge (Figure 6.3).</p>
+<image-component tag="figure-6-2" source="../assets/wp4-stage1-animation.gif" subtitle="Figure 6.2. Stage 1 rig in motion (schematic): one crank turn feeds one seal."></image-component>
+<p>A seal separates from its backing when bending it round the edge would store more energy than the adhesive needs to release, which happens for edge radii below R = √(D/2G), with D = Eh³/12 the seal's bending stiffness and G the release energy (derivation in Appendix F). I used this to choose between a printed tip (0.5 mm measured radius) and a steel shim: across the assumed range of seal properties (Figure 6.4) the printed edge releases any seal thicker than 0.054 mm, so I kept it; the measured 0.08 mm seal is well above this.</p>
+<image-component tag="figure-6-3" source="../assets/wp4-wipe-roller.png" subtitle="Figure 6.3. Illustration of the wipe roller, left to right: the seal lands half on the lid, the spring-loaded roller presses the lid half, then wipes the overhanging half over the box edge."></image-component>
+<image-component tag="figure-6-4" source="../assets/fig-peel-criterion.png" subtitle="Figure 6.4. Critical peel radius (the largest edge radius that still releases the seal) against seal thickness. Stiffness (1500 to 4000 MPa) and release force (0.1 to 0.5 N per 25 mm) are assumed, so the curves bound the range. The check ignores web tension, peel angle and speed."></image-component>
+<h3 id="64-fabrication">6.4 Fabrication</h3>
+<p>Nine 3D-printed PLA parts, laser-cut 5 mm acrylic plates and bolts as plain-bearing axles; rubber bands brake the supply roll and spring the wipe arm. Cost: about SGD 60.</p>
+<sl-divider></sl-divider>
+<h2 id="7-testing-and-analysis">7. Testing and Analysis</h2>
+<h3 id="71-stage-1-tests">7.1 Stage 1 Tests</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Pass criterion</th>
+<th>Result</th>
+<th>Likely cause and next step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1 Dispensing</td>
+<td>One seal per crank turn, 30 seals</td>
+<td>21 of 30 (70 %)</td>
+<td>Hand crank stops outside ±1.5 mm, failures scattered so mostly hand error; motorised head with gap sensor</td>
+</tr>
+<tr>
+<td>T2 Wipe roller</td>
+<td>Flat over the edge with no lifting or wrinkle, 10 seals</td>
+<td>7 of 10 (70 %); 2 partly pressed, 1 wrinkled</td>
+<td>Flexing roller mount; stiffer mount, test a brush</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table 7.1. Stage 1 bench tests, run under the approved Activity Risk Assessment; both support UAT-04 (success rate).</em></p>
+<h3 id="72-what-the-tests-show">7.2 What the Tests Show</h3>
+<p><strong>Peel edge.</strong> Every seal that reached the edge peeled cleanly, so the printed edge works. Figure 6.4 is a design check: thickness and edge radius are measured, but stiffness and release force are assumed.</p>
+<p><strong>T1.</strong> Each stop must land within ±1.5 mm, which is hard by hand. The nine failures were scattered through the run rather than bunched at the end, which points to hand error more than spool growth. The rewind spool grows with every turn and may add error over a longer run, but this has not been measured. The larger T1 test (Appendix J) records the number of every failed seal to confirm the pattern, and the motorised head (Section 5.2) removes both causes by sensing the gap.</p>
+<p><strong>T2.</strong> Two partial presses suggest a flexing roller mount; one seal wrinkled.</p>
+<p>Samples of 30 seals (T1) and 10 seals (T2) can find failure causes but cannot support a reliability claim. Showing 99.9 % at 95 % confidence needs about 3,000 consecutive clean cycles (rule of three), planned for Semester 2.</p>
+<h3 id="73-planned-tests">7.3 Planned Tests</h3>
+<p>Stage 1 was a first look, so larger T1 and T2 tests over 200 seals, with a fixed protocol (Appendix J), come before the motorised head is built. Stage 1 did not test a moving box, gap-stop timing, changeover or grid stock.</p>
+<sl-divider></sl-divider>
+<h2 id="8-problems-shortcomings-and-plan">8. Problems, Shortcomings and Plan</h2>
+<h3 id="81-problems-and-how-they-are-being-resolved">8.1 Problems and How They Are Being Resolved</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Resolution or plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hand crank misses seals (T1)</td>
+<td>Stepper that stops on a gap sensor</td>
+</tr>
+<tr>
+<td>Wipe roller presses unevenly (T2)</td>
+<td>Stiffer mount; test a brush</td>
+</tr>
+<tr>
+<td>Grid stock cannot use a peel edge</td>
+<td>Grid-to-roll converter</td>
+</tr>
+<tr>
+<td>Reaching the base seal on CEVA's conveyor</td>
+<td>Lower head under a 25 mm overhang; check on site</td>
+</tr>
+<tr>
+<td>Seal stiffness and release force assumed</td>
+<td>Test with supplier data or a peel test; steel shim if needed</td>
+</tr>
+<tr>
+<td>Web tension doubles as the supply roll empties</td>
+<td>Dancer arm or tension control in Semester 2 (Appendix F)</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table 8.1. Problems found and the plan for each.</em></p>
+<p>Risks are in Appendix E.</p>
+<h3 id="82-plan-and-milestones">8.2 Plan and Milestones</h3>
+<image-component tag="figure-8-1" source="../assets/fig-timeline.png" subtitle="Figure 8.1. WP4 timeline from September to the Showcase: done (blue) and planned (orange). Joint milestones are on the project overview."></image-component>
+<sl-divider></sl-divider>
+<h2 id="9-summary">9. Summary</h2>
+<p>Screening and a decision matrix selected Concept A. Stage 1 showed the printed peel edge works; the next step is a motorised head that stops on a gap sensor.</p>
+<sl-divider></sl-divider>
+<div id="references" class="references">
+<sl-divider></sl-divider>
+<h2>References</h2>
+<ul>
+<li id="ref-1">[1] CEVA Logistics and SIT, "Research Collaboration Arrangement, Schedule 1: WP4 Sealing (Box Closing)," unpublished, 2026.</li>
+<li id="ref-2">[2] SIT and CEVA Logistics, "SIT-CEVA Joint Proposal on Intelligent Logistics and Autonomous Systems," unpublished project deck, Aug. 2026.</li>
+<li id="ref-3">[3] J. Choo, CEVA Logistics, private communication, Oct. to Nov. 2026.</li>
+<li id="ref-4">[4] ZONESUN, "ZONESUN ZS-TB90 Corner Labeling Machine Horizontal Folding Box Sealer." [Online]. Available: <a href="https://www.zonesun.com/products/zonesun-zs-tb90-corner-labeling-machine-horizontal-folding-box-sealer" target="_blank">https://www.zonesun.com/products/zonesun-zs-tb90-corner-labeling-machine-horizontal-folding-box-sealer</a> (accessed Sept. 4, 2026).</li>
+<li id="ref-5">[5] ZONESUN, "ZONESUN ZS-TB816 Double-Side Box Anti-Tamper Corner Labeling Machine." [Online]. Available: <a href="https://www.zonesun.com/products/zonesun-zs-tb816-double-side-box-anti-tamper-corner-labeling-machine" target="_blank">https://www.zonesun.com/products/zonesun-zs-tb816-double-side-box-anti-tamper-corner-labeling-machine</a> (accessed Sept. 4, 2026).</li>
+<li id="ref-6">[6] HERMA, "Tamper-evident labeler HERMA 362E TE: Sealing of folding boxes." [Online]. Available: <a href="https://www.herma.com/machines/products/labeling-machines/two-side-labeler-362e-te" target="_blank">https://www.herma.com/machines/products/labeling-machines/two-side-labeler-362e-te</a> (accessed Nov. 12, 2026).</li>
+<li id="ref-7">[7] HERMA, "HERMA 500: For all labeling applications." [Online]. Available: <a href="https://www.herma.com/machines/products/label-applicators/herma-500/" target="_blank">https://www.herma.com/machines/products/label-applicators/herma-500/</a> (accessed Sept. 4, 2026).</li>
+<li id="ref-8">[8] A. R. Hunt, S. J. Diggle, and C. Swinburn, "Label applying apparatus," U.S. Patent 5,988,251, Nov. 23, 1999. [Online]. Available: <a href="https://patents.google.com/patent/US5988251" target="_blank">https://patents.google.com/patent/US5988251</a></li>
+<li id="ref-9">[9] Weber Marking Systems, "Automatic labeling: wipe-on vs. tamp-blow labelers," Feb. 27, 2020. [Online]. Available: <a href="https://www.weber-marking.com/blog/automatic-labeling-wipe-on-vs-tamp-blow-labelers/" target="_blank">https://www.weber-marking.com/blog/automatic-labeling-wipe-on-vs-tamp-blow-labelers/</a> (accessed Nov. 12, 2026).</li>
+<li id="ref-10">[10] A. J. Kinloch, C. C. Lau, and J. G. Williams, "The peeling of flexible laminates," <em>Int. J. Fract.</em>, vol. 66, no. 1, pp. 45-70, 1994, doi: 10.1007/BF00012635.</li>
+</ul>
+</div>
+
+<h2 id="appendices">Appendices</h2>
+<p><em>Appendices do not count toward the word limit.</em></p>
+<h3 id="appendix-a-full-wp4-acceptance-test-list">Appendix A: Full WP4 Acceptance Test List</h3>
+<p>From the WP4 RCA [1]. UAT-01 and UAT-10 concern lid closing, which CEVA confirmed is done at kitting [3].</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ref</th>
+<th>Requirement</th>
+<th>Target</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UAT-01</td>
+<td>Box closing rate</td>
+<td>4 s per pc</td>
+<td>Timed run</td>
+</tr>
+<tr>
+<td>UAT-02</td>
+<td>Sealing rate</td>
+<td>1 to 2 s per pc</td>
+<td>Timed run</td>
+</tr>
+<tr>
+<td>UAT-03</td>
+<td>Total cycle, inlet to outlet</td>
+<td>&lt; 7 s</td>
+<td>Timed run</td>
+</tr>
+<tr>
+<td>UAT-04</td>
+<td>Success rate, all box types</td>
+<td>&gt;= 99.8 %</td>
+<td>Count over acceptance run</td>
+</tr>
+<tr>
+<td>UAT-05</td>
+<td>Acceptance sample</td>
+<td>7,200 pcs (8 h x 60 min x 15/min)</td>
+<td>Continuous 8-hour run</td>
+</tr>
+<tr>
+<td>UAT-06</td>
+<td>Air pressure (if required)</td>
+<td>0.6 bar</td>
+<td>Utility check</td>
+</tr>
+<tr>
+<td>UAT-07</td>
+<td>Footprint</td>
+<td>1000 x 1200 mm</td>
+<td>Install measurement</td>
+</tr>
+<tr>
+<td>UAT-08</td>
+<td>Power</td>
+<td>240 V AC, 1 phase, 13 A, 50/60 Hz</td>
+<td>Utility check</td>
+</tr>
+<tr>
+<td>UAT-09</td>
+<td>No scratches</td>
+<td>100 %</td>
+<td>Visual inspection</td>
+</tr>
+<tr>
+<td>UAT-10</td>
+<td>No content damage</td>
+<td>100 %</td>
+<td>Inspect contents</td>
+</tr>
+<tr>
+<td>UAT-11</td>
+<td>HMI recipe selection from database</td>
+<td>Functional</td>
+<td>HMI test</td>
+</tr>
+<tr>
+<td>UAT-12</td>
+<td>HMI throughput per recipe</td>
+<td>Live display and record</td>
+<td>HMI test</td>
+</tr>
+<tr>
+<td>UAT-13</td>
+<td>Daily throughput upload to RMF</td>
+<td>Daily upload</td>
+<td>Data check</td>
+</tr>
+<tr>
+<td>UAT-14</td>
+<td>HMI select 1 or 2 seals and seal type</td>
+<td>Per RCA Appendix II</td>
+<td>HMI test</td>
+</tr>
+<tr>
+<td>UAT-15</td>
+<td>Seal check after sealing</td>
+<td>100 % pass</td>
+<td>Verification test</td>
+</tr>
+<tr>
+<td>UAT-16</td>
+<td>Data to and from ET1</td>
+<td>All data sent</td>
+<td>View in ET1</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="appendix-b-morphological-chart-concepts-and-scoring">Appendix B: Morphological Chart, Concepts and Scoring</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Option 1</th>
+<th>Option 2</th>
+<th>Option 3</th>
+<th>Option 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Locate box</td>
+<td>Fixed stop and pusher</td>
+<td>Side guide set by recipe</td>
+<td>Laser detects box on moving belt</td>
+<td>Head moves onto stationary box</td>
+</tr>
+<tr>
+<td>Singulate seal</td>
+<td>Roll over peel edge</td>
+<td>Grid: peel blade + vacuum</td>
+<td>Grid: chisel blade in die-cut gap</td>
+<td>Grid: slit into strips, then peel edge</td>
+</tr>
+<tr>
+<td>Place first half</td>
+<td>Wipe-on roller</td>
+<td>Tamp pad or tamp-blow</td>
+<td>Stamp from below</td>
+<td>Vacuum pick-and-place</td>
+</tr>
+<tr>
+<td>Fold second half</td>
+<td>Fold roller</td>
+<td>Fold plough</td>
+<td>Brush</td>
+<td>Box driven into held seal</td>
+</tr>
+<tr>
+<td>Opposite side</td>
+<td>Second module</td>
+<td>Servo turntable</td>
+<td>Twin-belt turner</td>
+<td>Roll cage (rejected: fits one size)</td>
+</tr>
+<tr>
+<td>Verify</td>
+<td>Camera and image check</td>
+<td>Photo-eye presence only</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Change over</td>
+<td>Servo axes from recipe</td>
+<td>Vision-guided offsets</td>
+<td>Manual (rejected)</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table B1. WP4 morphological chart. Lid closing was listed at first but removed once CEVA confirmed kitting closes the lid.</em></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Singulate</th>
+<th>Place</th>
+<th>Fold</th>
+<th>Strengths</th>
+<th>Weaknesses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A Roll-fed wipe-on</td>
+<td>Roll over peel edge</td>
+<td>Wipe-on roller</td>
+<td>Fold roller</td>
+<td>No compressed air; continuous and fast</td>
+<td>Roll stock only; seal timing must match the box</td>
+</tr>
+<tr>
+<td>B Vacuum pick from grid</td>
+<td>Grid: peel blade + vacuum</td>
+<td>Vacuum pick-and-place (two heads), box stopped</td>
+<td>Fold plough</td>
+<td>Uses grid sheets directly</td>
+<td>Box must stop; slow, many moving parts</td>
+</tr>
+<tr>
+<td>C Stamp from below</td>
+<td>Roll over peel edge</td>
+<td>Stamp from below</td>
+<td>Fold roller</td>
+<td>Could serve several boxes at once</td>
+<td>Box must hang off the end of a special short belt and be supported</td>
+</tr>
+<tr>
+<td>D Side-lying, two heads</td>
+<td>Grid: peel blade + vacuum</td>
+<td>Vacuum pick-and-place, two heads at once</td>
+<td>Fold plough</td>
+<td>Both seals in one stop; uses grid sheets</td>
+<td>Box rides on its back wall on a narrow belt; unstable</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table B2. How each concept combines options from Table B1, with its strengths and weaknesses.</em></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Weightage</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Potential reliability of a single seal</td>
+<td>25 %</td>
+<td>UAT-04</td>
+</tr>
+<tr>
+<td>Cycle time</td>
+<td>20 %</td>
+<td>UAT-02</td>
+</tr>
+<tr>
+<td>Automatic changeover</td>
+<td>20 %</td>
+<td>Novelty, UAT-11</td>
+</tr>
+<tr>
+<td>Roll and grid stock</td>
+<td>10 %</td>
+<td>UAT-14 (seal type); CEVA uses both formats (Section 2.1)</td>
+</tr>
+<tr>
+<td>Footprint</td>
+<td>10 %</td>
+<td>UAT-07</td>
+</tr>
+<tr>
+<td>Build complexity</td>
+<td>10 %</td>
+<td>FYP timeline</td>
+</tr>
+<tr>
+<td>Air dependency</td>
+<td>5 %</td>
+<td>UAT-06 (0.6 bar): how much each remaining concept relies on vacuum or air</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table B3. Decision matrix criteria and their sources. Air dependency compares how much each remaining concept relies on vacuum or air.</em></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current weightages</td>
+<td>3.85</td>
+<td>2.80</td>
+<td>2.85</td>
+<td>2.60</td>
+</tr>
+<tr>
+<td>All criteria equal</td>
+<td>3.86</td>
+<td>2.71</td>
+<td>2.71</td>
+<td>2.57</td>
+</tr>
+<tr>
+<td>Stock weightage 20 %</td>
+<td>3.53</td>
+<td>2.82</td>
+<td>2.64</td>
+<td>2.64</td>
+</tr>
+<tr>
+<td>Stock weightage 30 %</td>
+<td>3.22</td>
+<td>2.84</td>
+<td>2.44</td>
+<td>2.69</td>
+</tr>
+<tr>
+<td>Stock weightage 40 %</td>
+<td>2.90</td>
+<td>2.87</td>
+<td>2.23</td>
+<td>2.73</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table B4. Sensitivity of the weighted totals. When the stock weightage changes, the others are scaled down in proportion. B overtakes A at about 41 % and D at about 45 %.</em></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reliability</td>
+<td>4: peel-edge dispensing is used by every applicator reviewed in Section 2.2; one moving web</td>
+<td>2: releasing a seal from a sheet is the known weak step, and every pick can fail</td>
+<td>3: proven peel edge, but stamping upwards onto an overhanging box can misplace seals</td>
+<td>2: a box on its back wall can tip, and two heads double the failure points</td>
+</tr>
+<tr>
+<td>Cycle time</td>
+<td>5: dispenses while the box moves, so the box never stops</td>
+<td>3: box stops; two heads at 1.0 to 1.3 s per seal each (Appendix F) fit within 2 s</td>
+<td>3: box must stop over the stamp</td>
+<td>4: both seals in one stop, but the box must stop</td>
+</tr>
+<tr>
+<td>Changeover</td>
+<td>3: side guide and head height move from the recipe; timing is in software</td>
+<td>4: gantry positions are software, so any size is reachable</td>
+<td>3: stamp position and box support move per size</td>
+<td>2: box height and support change with every size when lying down</td>
+</tr>
+<tr>
+<td>Roll and grid stock</td>
+<td>1: roll only (the converter would raise this)</td>
+<td>3: grid directly; rolls need another feeder</td>
+<td>1: roll only</td>
+<td>3: grid directly; rolls need another feeder</td>
+</tr>
+<tr>
+<td>Footprint</td>
+<td>4: bolts beside the conveyor; needs a 25 mm box overhang</td>
+<td>3: gantry and sheet magazine take space</td>
+<td>4: compact, under the belt</td>
+<td>3: needs a tipping section and two heads</td>
+</tr>
+<tr>
+<td>Build complexity</td>
+<td>5: one web path and simple parts; no gantry, vacuum or tipping mechanism</td>
+<td>2: gantry, two vacuum heads and sheet indexing</td>
+<td>3: stamp mechanism plus box support</td>
+<td>2: tipping mechanism plus two heads</td>
+</tr>
+<tr>
+<td>Air dependency</td>
+<td>5: fully electric</td>
+<td>2: needs a vacuum supply</td>
+<td>2: stamp likely pneumatic</td>
+<td>2: needs a vacuum supply for both heads</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table B5. Reason for each score in Figure 4.4.</em></p>
+<h4 id="ideas-generated-during-concept-development">Ideas Generated During Concept Development</h4>
+<p>Ideas I came up with while building the morphological chart. Those that survived are in Table B1.</p>
+<ol>
+<li>A laser detects the box, then a fast presser with stiff brushes pushes the seal's second half down.</li>
+<li>A side-sweep brush press: a cylinder beside the front wall strokes parallel to it.</li>
+<li>A seal conveyor at 90 degrees to the main belt, with stamps rising from below (became Concept C).</li>
+<li>The head moves onto a stationary box, rather than the box moving into the head.</li>
+<li>The Concept A peel head, inspired by a correction-tape dispenser.</li>
+</ol>
+<h3 id="appendix-c-declaration-of-ai-tool-use">Appendix C: Declaration of AI Tool Use</h3>
+<p>I used Claude (Anthropic) in the following ways:</p>
+<ul>
+<li><strong>Research:</strong> searching for commercial machines, patents and sources, which I then read and checked.</li>
+<li><strong>Concept models:</strong> Claude built the 3D concept models and animations in Figures 4.3 and 5.2 and the converter diagram in Figure 4.5 from my descriptions. They are concept sketches, not my own CAD.</li>
+<li><strong>Structuring and Drafting:</strong> used to generate a preliminary structural outline for the report.</li>
+<li><strong>Calculations and figures:</strong> checking my calculations and refining the layout and aesthetic formatting of supplementary diagrams and charts.</li>
+<li><strong>Writing and Editing:</strong> used for proofreading, refining sentence phrasing, checking grammar and vocabulary, and formatting references.</li>
+</ul>
+<p>I chose the concept, built and tested the rig, recorded the results, and reviewed every output. I am responsible for all the content and design decisions.</p>
+<h3 id="appendix-d-label-application-methods">Appendix D: Label Application Methods</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How it works</th>
+<th>Needs compressed air</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wipe-on</td>
+<td>The moving product drags the label on against a brush or roller [9]</td>
+<td>No [9]</td>
+</tr>
+<tr>
+<td>Tamp</td>
+<td>A pad holds the label and presses it onto the product</td>
+<td>Usually; electric versions exist</td>
+</tr>
+<tr>
+<td>Tamp-blow</td>
+<td>The label waits on the pad and is blown onto the product without contact [9]</td>
+<td>Yes [9]</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table D1. Label application methods considered in the morphological chart.</em></p>
+<h3 id="appendix-e-wp4-risk-register">Appendix E: WP4 Risk Register</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motorised head still misses seals at the 3 mm gap</td>
+<td>High</td>
+<td>Gap sensor with fast response; fine microstepping; test over at least 200 seals</td>
+</tr>
+<tr>
+<td>Grid converter splices jam or shift pitch</td>
+<td>High</td>
+<td>Gap sensor triggers on each seal; splice test before integration</td>
+</tr>
+<tr>
+<td>Box orientation after kitting does not suit one module</td>
+<td>Medium</td>
+<td>Confirm at CEVA visit; second module or turntable as options</td>
+</tr>
+<tr>
+<td>No room for the lower head at CEVA's belt edge</td>
+<td>High</td>
+<td>Check belt-edge access on site; short bridging plate under the overhang; flip station as fallback</td>
+</tr>
+<tr>
+<td>A thinner seal type cuts the peel margin</td>
+<td>Medium</td>
+<td>Measure each seal type; steel shim on the peel tip</td>
+</tr>
+<tr>
+<td>Air supply really is 0.6 bar (possibly a typo for 6 bar)</td>
+<td>Medium</td>
+<td>Confirm with CEVA; electric drive only</td>
+</tr>
+<tr>
+<td>Wipe roller scratches box (UAT-09)</td>
+<td>Low</td>
+<td>Soft roller or brush; inspect surfaces in tests</td>
+</tr>
+<tr>
+<td>CEVA volume data (common SKUs, seals per box, stock type, SKU changes per day) not yet received</td>
+<td>Medium</td>
+<td>Requested in Nov 2026; until then test the largest, smallest and narrowest boxes (B2, T3, T7)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="appendix-f-calculations">Appendix F: Calculations</h3>
+<p>Each calculation supports a named section and decision. Seal and backing thickness are measured; other values marked assumed.</p>
+<h4 id="f1-pick-and-place-screening-section-42">F.1 Pick-and-Place Screening (Section 4.2)</h4>
+<p>One vacuum pick head, assumed 250 mm travel, 1 m/s top speed and 0.2 s each to pick and place.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>At 5 m/s²</th>
+<th>At 20 m/s²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cycle per seal (pick, move out, place, move back)</td>
+<td>1.3 s</td>
+<td>1.0 s</td>
+</tr>
+<tr>
+<td>Two seals with one head (no return move after the second)</td>
+<td>2.15 s</td>
+<td>1.7 s</td>
+</tr>
+</tbody>
+</table></div>
+<p>Decision: one head needs 1.7 to 2.2 s for two seals before the box stops and restarts, leaving little or no margin within 2 s, so stop-and-pick needs two heads. Concept B, with two heads, passed this screen and lost in the decision matrix on reliability and build complexity (Table B5).</p>
+<h4 id="f2-peel-edge-section-63">F.2 Peel Edge (Section 6.3)</h4>
+<p>Bending the seal to radius R stores energy D/(2R²) per unit area, where D = Eh³/12 is its bending stiffness. The seal peels away instead of following the edge when this exceeds the adhesive's release energy G: D/(2R²) &gt; G, so R &lt; √(D/2G).</p>
+<p>Measured: seal thickness h = 0.08 mm, backing thickness t = 0.1 mm, printed edge radius 0.5 mm. Assumed: stiffness E = 3000 MPa, release force F = 0.3 N per 25 mm width at 180°.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Working</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release energy G</td>
+<td>180° peel from the backing liner, not the box: G = 2F/b = 2 x 0.3 / 25 [10]</td>
+<td>0.024 N/mm</td>
+</tr>
+<tr>
+<td>Bending stiffness D</td>
+<td>Eh³/12 = 3000 x 0.08³ / 12</td>
+<td>0.128 N·mm</td>
+</tr>
+<tr>
+<td>Critical edge radius</td>
+<td>R = √(D/2G) = √(0.128 / 0.048)</td>
+<td>1.63 mm</td>
+</tr>
+<tr>
+<td>Thinnest seal released by a 0.5 mm edge</td>
+<td>Setting R = 0.5 mm gives h³ = 6G/E; worst assumed case E = 1500 MPa, 0.5 N per 25 mm</td>
+<td>0.054 mm</td>
+</tr>
+</tbody>
+</table></div>
+<p>Decision: the printed tip (0.5 mm radius) releases any seal thicker than about 0.054 mm, so it was kept and the steel shim held in reserve. For the measured 0.08 mm seal the critical radius is 1.63 mm, a margin of 3.3 times over the 0.5 mm edge, or 1.8 times in the worst assumed case (0.89 mm).</p>
+<p>Limits of this check: it is a screening calculation, not a validated peel model. [10] supports only the peel relation G = 2F/b, and the check ignores web tension and peel angle.</p>
+<ul>
+<li>If the 0.08 mm includes adhesive and the stiff facestock is only 0.055 to 0.06 mm, the worst-case margin falls to about 1.0 to 1.2 (R = 0.51 mm at h = 0.055 mm).</li>
+<li>If the release force doubled to 1.0 N per 25 mm, the worst-case margin would fall to about 1.3.</li>
+<li>In the worst case (0.5 N per 25 mm), the edge fails to release the 0.08 mm seal only if E is below about 470 MPa.</li>
+</ul>
+<p>Stiffness and release force stay assumed until a datasheet or peel test replaces them.</p>
+<h4 id="f3-other-checks">F.3 Other Checks</h4>
+<ul>
+<li><strong>Belt speed (Section 5.2):</strong> 400 mm box spacing at 4 s per box gives 100 mm/s, so a seal dispenses in 0.3 s (inside UAT-02) and each 1 ms of sensor delay moves the web 0.1 mm.</li>
+<li><strong>Supply roll (Sections 3 and 8):</strong> a roll holds 3,000 to 3,600 seals, so each head's roll lasts about 3 to 4 h. The brake (4 N at the 85 mm full radius, 0.34 N·m) exceeds the 0.19 N·m needed to stop the full roll within 0.75 mm, so it does not overrun. Because the brake torque stays roughly constant, web tension rises to about 8.5 N at the 40 mm core.</li>
+<li><strong>Test statistics (Section 7.2):</strong> with no failures in n trials, the 95 % upper bound on the failure rate is about 3/n, so showing 99.9 % needs about 3,000 clean cycles.</li>
+<li><strong>Rig strength:</strong> peel bar deflection about 0.07 mm and gear bending safety factor above 20, both negligible at hand-crank loads.</li>
+</ul>
+<h3 id="appendix-g-grid-sheet-methods-considered">Appendix G: Grid-Sheet Methods Considered</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method (Table B1)</th>
+<th>Verdict</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slit into strips, splice and rewind (converter)</td>
+<td>Preferred</td>
+<td>Reuses the proven Concept A head</td>
+</tr>
+<tr>
+<td>Peel blade + vacuum pick from the sheet</td>
+<td>Fallback</td>
+<td>Works on sheets directly, but slow and needs extra axes (Concept B)</td>
+</tr>
+<tr>
+<td>Chisel blade in the die-cut gap</td>
+<td>Not pursued</td>
+<td>Needs the blade to find each gap; same pick problem as above</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table G1. Grid-sheet methods from the morphological chart.</em></p>
+<h3 id="appendix-h-wp4-changeover-axes">Appendix H: WP4 Changeover Axes</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Travel needed</th>
+<th>Candidate actuator</th>
+<th>Accuracy needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Side guide (sets where the seal lands across the box)</td>
+<td>60 to 240 mm</td>
+<td>Lead screw and stepper</td>
+<td>±1 mm, so a 30 mm seal stays centred</td>
+</tr>
+<tr>
+<td>Seal head height</td>
+<td>35 to 115 mm</td>
+<td>Lead screw and stepper</td>
+<td>±0.5 mm, so the seal splits evenly over the edge</td>
+</tr>
+<tr>
+<td>Seal timing along the box</td>
+<td>115 to 200 mm</td>
+<td>Laser trigger and encoder, in software</td>
+<td>±2 mm</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table H1. Accuracies are first estimates from the 30 mm seal size, to be confirmed with the supervisor.</em></p>
+<h3 id="appendix-i-stage-1-rig-design-decisions">Appendix I: Stage 1 Rig Design Decisions</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Options considered</th>
+<th>Choice and reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drive</td>
+<td>Stepper and Arduino; hand crank</td>
+<td>Hand crank: proves the peel principle fastest</td>
+</tr>
+<tr>
+<td>Crank position</td>
+<td>On a drive roller with a pinch roller; on the rewind spool</td>
+<td>Rewind spool: no drive roller, pinch roller or slipping rewind belt, accepting slight feed drift</td>
+</tr>
+<tr>
+<td>Peel bar tip</td>
+<td>Printed edge; steel shim</td>
+<td>Printed edge, with a steel shim as the fix if it is too blunt (Appendix F)</td>
+</tr>
+<tr>
+<td>Bearings</td>
+<td>Ball bearings; plain bearings on bolts</td>
+<td>Plain bearings: cheaper and enough for hand speed</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="appendix-j-planned-test-protocol-for-t1-t2-and-the-peel-edge-check">Appendix J: Planned Test Protocol for T1, T2 and the Peel Edge Check</h3>
+<p><strong>T1 dispensing: 200 seals.</strong> Before each turn, line the gap up with the peel edge, then turn one turn. Record each seal as dispensed, not dispensed, partly dispensed or two at once, noting the number of every failure, and photograph one example of each failure type. Use the same operator, roll and box throughout, keep the raw log as a CSV on the project site, and film one run. Report the success rate.</p>
+<p><strong>T2 wipe roller: the same 200 seals.</strong> Each seal dispensed in T1 is wiped onto the box, so T2 uses the same seals. Record each seal at 0 h and 24 h as flat (adhered across the whole edge), partly pressed (lifting along part of the edge) or wrinkled (visible crease), with one reference photo of each. If partial presses or wrinkles are common, repeat the wipe test with a stiffened mount (or a brush) and compare.</p>
+<p><strong>Peel edge check.</strong> The measured edge radius (0.5 mm) and seal thickness (0.08 mm) already sit inside the release region of Figure 6.4. If a thinner seal type is introduced, dispense 30 of the thinnest seals over the printed tip and 30 over a steel shim tip, and record clean release, late release or stays on backing.</p>
+<h3 id="appendix-k-commercial-seal-applicators-compared">Appendix K: Commercial Seal Applicators Compared</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Machine</th>
+<th>Strengths</th>
+<th>Limits for CEVA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a) Zonesun ZS-TB90 [4], semi-automatic</td>
+<td>Folds 90°; about USD 1.2k</td>
+<td>Operator feeds and turns every box; roll only</td>
+</tr>
+<tr>
+<td>(b) Zonesun ZS-TB816 [5], automatic</td>
+<td>Brush folds the seal; 40 to 120 per min</td>
+<td>Own conveyor; about USD 11k</td>
+</tr>
+<tr>
+<td>(c) HERMA 362E TE [6], high end</td>
+<td>Seals both sides, folds 90°, checks seals; up to 200 per min</td>
+<td>Own conveyor; rigid cartons only</td>
+</tr>
+<tr>
+<td>(d) HERMA 500 [7], conveyor-mounted</td>
+<td>Mounts beside any conveyor</td>
+<td>Flat labels only; no 90° fold</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Table K1. The four machines in Figure 2.2 [4]-[7].</p>
+<h3 id="appendix-l-design-journey">Appendix L: Design Journey</h3>
+<image-component tag="figure-l1" source="../assets/wp4-design-journey.png" subtitle="Figure L1. How the WP4 design developed from August to November 2026."></image-component>
+  </div>
+
+  <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
+    <sl-icon name="arrow-up" label="Back to top"></sl-icon>
+  </sl-button>
+</body>
+
+</html>
